@@ -16,7 +16,7 @@ const GroqFeatures = ({ chatMessages }) => {
     if (!chatMessages?.length) return;
     setLoading(true);
     try {
-      const res = await axios.post("/groq/summarize", {
+      const res = await axiosInstance.post("/groq/summarize", {
         messages: chatMessages.map((m) => m.text || m.content || ""),
       });
       setSummary(res.data.summary);
@@ -35,7 +35,7 @@ const GroqFeatures = ({ chatMessages }) => {
 
     setLoading(true);
     try {
-      const res = await axios.post("/groq/translate", {
+      const res = await axiosInstance.post("/groq/translate", {
         message: text,
         targetLang,
       });
@@ -55,7 +55,7 @@ const GroqFeatures = ({ chatMessages }) => {
 
     setLoading(true);
     try {
-      const res = await axios.post("/groq/suggest-reply", {
+      const res = await axiosInstance.post("/groq/suggest-reply", {
         message: text,
       });
       
